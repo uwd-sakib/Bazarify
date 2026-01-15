@@ -65,7 +65,7 @@
 }
 
 .statCard {
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
   border-radius: 50%;
   aspect-ratio: 1;
   display: flex;
@@ -73,8 +73,8 @@
   align-items: center;
   justify-content: center;
   padding: 32px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
   position: relative;
   overflow: hidden;
 }
@@ -84,56 +84,101 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  padding: 3px;
+  padding: 4px;
   background: var(--gradient);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.statCard::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.4s;
+  filter: blur(40px);
+  z-index: -1;
 }
 
 .statCard:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.statCard:hover::after {
+  opacity: 0.3;
 }
 
 .statCard.blue::before {
-  --gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.statCard.blue::after {
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .statCard.green::before {
-  --gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.statCard.green::after {
+  --gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
 }
 
 .statCard.purple::before {
-  --gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+}
+
+.statCard.purple::after {
+  --gradient: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
 }
 
 .statCard.orange::before {
-  --gradient: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+  --gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.statCard.orange::after {
+  --gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
 .statIcon {
-  font-size: 48px;
+  font-size: 52px;
   margin-bottom: 16px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s;
+}
+
+.statCard:hover .statIcon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .statNumber {
-  font-size: 36px;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: 38px;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 8px 0;
   line-height: 1;
+  transition: transform 0.3s;
+}
+
+.statCard:hover .statNumber {
+  transform: scale(1.05);
 }
 
 .statLabel {
   font-size: 14px;
   color: #6b7280;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 8px;
+  letter-spacing: 0.5px;
 }
 
 /* Alert / Notice Section */
